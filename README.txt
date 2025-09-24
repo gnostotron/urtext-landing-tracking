@@ -4,7 +4,7 @@ Donate link: https://urtext.ca/
 Tags: tracking, utm, rss, feed, ads
 Requires at least: 6.2 
 Tested up to: 6.8
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,9 @@ Install the plugin to your blog and visit the Settings page to set up your UTM c
 5. Tracking report
 
 == Changelog ==
+
+= 1.0.1 =
+* changed how params are passed for RSS feeds
 
 = 1.0 =
 * initial release

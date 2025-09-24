@@ -121,8 +121,11 @@ class Urtext_Landing_Tracking_Public {
 	 * @since    1.0.0
 	 */
 	function filter_permalink_rss($permalink) {
-		if (isset($_GET['urtext_code'])) {
-			return $permalink . '?' . sanitize_text_field(urldecode(wp_unslash($_GET['urtext_code'])));
+		if (isset($_GET['urtext_code_title'])) {
+			$map = get_option("urtext_landing_tracking_code_map", array());
+			if (isset($map[urldecode(sanitize_text_field(wp_unslash($_GET['urtext_code_title'])))])) {
+				return $permalink . '?' . $map[urldecode(sanitize_text_field(wp_unslash($_GET['urtext_code_title'])))];
+			} 
 		}
 		return $permalink;
 	}
@@ -162,14 +165,14 @@ class Urtext_Landing_Tracking_Public {
 
 		foreach ($this->utm_keys as $key) {
 			if (isset($_GET[$key]) && $_GET[$key] != "") {
-				$utm_fields[$key] = sanitize_text_field(urldecode(wp_unslash($_GET[$key])));
-				$utm_fields_string .= $utm_fields[$key] . "=" . sanitize_text_field(urldecode(wp_unslash($_GET[$key]))) . "&"; 
+				$utm_fields[$key] = urldecode(filter_var(wp_unslash($_GET[$key]), FILTER_SANITIZE_URL));
+				$utm_fields_string .= $utm_fields[$key] . "=" . urldecode(filter_var(wp_unslash($_GET[$key]), FILTER_SANITIZE_URL)) . "&"; 
 			}
 		}
 		foreach (get_option("urtext_landing_tracking_custom_fields", array()) as $key) {
 			if (isset($_GET[$key]) && $_GET[$key] != "") {
-				$utm_fields[$key] = sanitize_text_field(urldecode(wp_unslash($_GET[$key])));
-				$utm_fields_string .= $utm_fields[$key] . "=" . sanitize_text_field(urldecode(wp_unslash($_GET[$key]))) . "&";  
+				$utm_fields[$key] = urldecode(filter_var(wp_unslash($_GET[$key]), FILTER_SANITIZE_URL));
+				$utm_fields_string .= $utm_fields[$key] . "=" . urldecode(filter_var(wp_unslash($_GET[$key]), FILTER_SANITIZE_URL)) . "&"; 
 			}
 		}
 		$request = "";

@@ -191,20 +191,35 @@ class Urtext_Landing_Tracking_Admin {
 	public function sanitize_tracking_codes($array) {
 		$tracking_codes = array();
 		$custom_tracking_fields = array();
+		$urtext_landing_tracking_code_map = array();
 		foreach ($array as $code_entry) {
-			$new_code = array();
+			$new_code = "";
+			$new_custom_code = array();
 			foreach ($code_entry as $key => $value) {
-				$new_code[strtolower($key)] = sanitize_text_field($value);
+				$new_custom_code[strtolower($key)] = sanitize_text_field($value);
 				if ($key == "custom_field" ) {
 					// Custom tracking code field
 					$custom_tracking_fields[strtolower($value)] = true;
 				}
+				if ($key == "date_added" || $key == "title" || $key == "custom_field_content") {
+					continue;
+				}
+				if ($new_code != "") {
+					$new_code .= "&";
+				}
+				if ($key == "custom_field") {
+					$new_code .= $value . "=" . urlencode($code_entry["custom_field_content"]);
+				} else {
+					$new_code .= $key . "=" . urlencode($value);
+				}
 			}
-			if (!empty($new_code)) {
-				$tracking_codes[] = $new_code; 
+			$urtext_landing_tracking_code_map[str_replace(" ", "_", strtolower($code_entry['title']))] = $new_code;
+			if (!empty($new_custom_code)) {
+				$tracking_codes[] = $new_custom_code; 
 			}
 		}
 		update_option("urtext_landing_tracking_custom_fields", array_keys($custom_tracking_fields), false);
+		update_option("urtext_landing_tracking_code_map", $urtext_landing_tracking_code_map, false);
 		return $tracking_codes;
 	}
 

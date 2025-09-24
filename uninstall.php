@@ -14,6 +14,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 delete_option("urtext_landing_tracking_codes");
 delete_option("urtext_landing_tracking_custom_fields");
+delete_option("urtext_landing_tracking_code_map");
 delete_option("urtext_landing_tracking_db_version");
 
 global $wpdb;

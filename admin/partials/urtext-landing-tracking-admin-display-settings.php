@@ -215,23 +215,23 @@ class Urtext_Landing_Tracking_Admin_Display_Settings {
                         new_code.title = document.getElementById('title').value.trim();
                     }
                     if (document.getElementById('utm_source').value.trim() != "") {
-                        new_code.utm_source = document.getElementById('utm_source').value.trim().toLowerCase();
+                        new_code.utm_source = document.getElementById('utm_source').value.trim().toLowerCase().replaceAll(" ", "_");
                     }
                     if (document.getElementById('utm_medium').value.trim() != "") {
-                        new_code.utm_medium = document.getElementById('utm_medium').value.trim().toLowerCase();
+                        new_code.utm_medium = document.getElementById('utm_medium').value.trim().toLowerCase().replaceAll(" ", "_");
                     }
                     if (document.getElementById('utm_campaign').value.trim() != "") {
-                        new_code.utm_campaign = document.getElementById('utm_campaign').value.trim().toLowerCase();
+                        new_code.utm_campaign = document.getElementById('utm_campaign').value.trim().toLowerCase().replaceAll(" ", "_");
                     }
                     if (document.getElementById('utm_term').value.trim() != "") {
-                        new_code.utm_term = document.getElementById('utm_term').value.trim().toLowerCase();
+                        new_code.utm_term = document.getElementById('utm_term').value.trim().toLowerCase().replaceAll(" ", "_");
                     }
                     if (document.getElementById('utm_content').value.trim() != "") {
-                        new_code.utm_content = document.getElementById('utm_content').value.trim().toLowerCase();
+                        new_code.utm_content = document.getElementById('utm_content').value.trim().toLowerCase().replaceAll(" ", "_");
                     }
                     if (document.getElementById('custom_field_name').value.trim() != "" && document.getElementById('custom_field_content').value.trim() != "") {
-                        new_code.custom_field = document.getElementById('custom_field_name').value.trim().toLowerCase(); 
-                        new_code.custom_field_content = document.getElementById('custom_field_content').value.trim().toLowerCase();
+                        new_code.custom_field = document.getElementById('custom_field_name').value.trim().toLowerCase().replaceAll(" ", "_"); 
+                        new_code.custom_field_content = document.getElementById('custom_field_content').value.trim().toLowerCase().replaceAll(" ", "_");
                     }
                     urtext_tracking_codes.push(new_code);
                     showTrackingCodes();
@@ -289,7 +289,7 @@ class Urtext_Landing_Tracking_Admin_Display_Settings {
                     }
                     rss_base += 'feed';
                     if (document.getElementById('rss_tracking_codes').value.trim() != "") {
-                        rss_base += "?urtext_code_title=" + encodeURIComponent(document.getElementById('rss_tracking_codes').options[document.getElementById('rss_tracking_codes').selectedIndex].getAttribute("title")) + "&urtext_code=" + encodeURIComponent(document.getElementById('rss_tracking_codes').value.trim());
+                        rss_base += "?urtext_code_title=" + encodeURIComponent(document.getElementById('rss_tracking_codes').options[document.getElementById('rss_tracking_codes').selectedIndex].getAttribute("title").toLowerCase().replaceAll(" ", "_"));
                     }
                     container.innerHTML = rss_base;
                 }

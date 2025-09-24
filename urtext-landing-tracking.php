@@ -16,7 +16,7 @@
  * Plugin Name:       Ur-Text Simple Landing Tracking
  * Plugin URI:        https://urtext.ca
  * Description:       Add custom UTM codes to post URLs that track visitor landings.  Automatically post UTM-coded post URLs to social media using syndicated feeds.  Use UTM codes to track visitors through your site.  Visitor data is fully anonymized and privacy law compliant.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Colin MacNeill
  * Author URI:        https://urtext.ca/
  * License:           GPL-2.0+
